@@ -45,6 +45,17 @@
 #undef USB_VBUS_PIN
 #define SPLIT_USB_DETECT
 
+/* Diodes were hand-wired band(cathode)->row, i.e. col->row conduction = COL2ROW.
+ * The board defaults to ROW2COL (its PCB convention), which blocks every key.
+ * Match firmware to the wiring. */
+#undef DIODE_DIRECTION
+#define DIODE_DIRECTION COL2ROW
+
+/* Diodes were soldered band(cathode)->row, i.e. current flows col->row = COL2ROW.
+ * The board defaults to ROW2COL, which blocks all keys. Match the wiring. */
+#undef DIODE_DIRECTION
+#define DIODE_DIRECTION COL2ROW
+
 #ifdef POINTING_DEVICE_ENABLE
 // Automatically enable the pointer layer when moving the trackball.  See also:
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
