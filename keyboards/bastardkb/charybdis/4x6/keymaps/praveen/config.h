@@ -51,10 +51,9 @@
 #undef DIODE_DIRECTION
 #define DIODE_DIRECTION COL2ROW
 
-/* Diodes were soldered band(cathode)->row, i.e. current flows col->row = COL2ROW.
- * The board defaults to ROW2COL, which blocks all keys. Match the wiring. */
-#undef DIODE_DIRECTION
-#define DIODE_DIRECTION COL2ROW
+/* Treat the USB-connected half as the LEFT half. */
+#undef MASTER_RIGHT
+#define MASTER_LEFT
 
 #ifdef POINTING_DEVICE_ENABLE
 // Automatically enable the pointer layer when moving the trackball.  See also:
