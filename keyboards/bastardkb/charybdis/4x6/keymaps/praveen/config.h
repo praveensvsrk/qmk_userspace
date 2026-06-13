@@ -39,6 +39,12 @@
 #define MATRIX_ROW_PINS { GP29, GP26, GP5, GP14, GP12 }
 //   logical row:            0     1    2     3     4(thumb)
 
+/* RP2040-Zero has no VBUS sense wired to GP19 (that's a Splinky-only connection),
+ * so the firmware can't detect USB via the pin and never becomes master / never
+ * enumerates. Drop the pin and use software USB detection instead. */
+#undef USB_VBUS_PIN
+#define SPLIT_USB_DETECT
+
 #ifdef POINTING_DEVICE_ENABLE
 // Automatically enable the pointer layer when moving the trackball.  See also:
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
