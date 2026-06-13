@@ -28,6 +28,17 @@
 
 /* Charybdis-specific features. */
 
+/* RP2040-Zero: GP21 is on the hard-to-reach back pads - remap col 2 to GP3. */
+#undef MATRIX_COL_PINS
+#define MATRIX_COL_PINS { GP27, GP28, GP3, GP6, GP8, GP7 }
+//                                    ^^^            ^^^^^^^^
+//                       col2 was GP21 -> GP3; cols 4 & 5 swapped (GP8, GP7) to match wiring
+
+/* Row pins remapped to match hand-wiring: row3 GP4->GP14, row4(thumb) GP9->GP12. */
+#undef MATRIX_ROW_PINS
+#define MATRIX_ROW_PINS { GP29, GP26, GP5, GP14, GP12 }
+//   logical row:            0     1    2     3     4(thumb)
+
 #ifdef POINTING_DEVICE_ENABLE
 // Automatically enable the pointer layer when moving the trackball.  See also:
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
